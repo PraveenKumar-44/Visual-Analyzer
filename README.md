@@ -1,76 +1,171 @@
- Visual Product Matcher
+text
+# 🔍 Visual Product Matcher
 
-Visual Product Matcher** is a web application that allows users to find visually similar products in a catalog. Upload an image of a product, and the system will return the closest matching items from your dataset.
+**Visual Product Matcher** is a Python-based web application that allows users to find visually similar products from an existing dataset.  
+By uploading an image or providing an image URL, the app returns the closest matching items using precomputed image embeddings for fast and accurate retrieval.
 
- 🔹 Features
+---
 
-- Upload product images (JPG, JPEG, PNG, WEBP) or provide an image URL.
-- Find visually similar products from a predefined dataset.
-- Display results with images in an easy-to-view format.
-- Handles multiple image formats.
-- Works locally and deployed on Streamlit.
+## 🚀 Features
 
- 🔹 Folder Structure
- 
+- Upload product images in **JPG, JPEG, PNG, or WEBP** formats.
+- Alternatively, provide a **direct image URL**.
+- Search for visually similar products using **precomputed embeddings**.
+- Display matching results in a **clean, responsive Streamlit interface**.
+- Gracefully handles **missing or invalid dataset images**.
+- Can be run locally or **deployed easily on Streamlit Cloud**.
+
+---
+
+## 📂 Folder Structure
+
 visual_product_matcher/
 │
 ├─ app.py # Main Streamlit application
+├─ embeddings.npy # Precomputed image embeddings for the dataset
+├─ extract_embeddings.py # Script to extract embeddings from images
+├─ model.py # Feature extraction / similarity model
+├─ metadata.json # Metadata about the products
 ├─ requirements.txt # Python dependencies
-├─ data/123/ # Folder containing product images
+├─ run_preprocess.sh # Shell script to preprocess dataset
+├─ data/ # Folder containing product images
+│ └─ 123/
 │ ├─ 1.jpg
 │ ├─ 2.jpg
 │ ├─ 10.jpg
 │ └─ ... other images
-├─ venv/ # Virtual environment (ignored in .gitignore)
-├─ README.md # Project documentation
+└─ README.md # Project documentation
 
- **Note:** The `venv` folder is not included in the repository. Only add your data folder and code files.
+text
 
- 🔹 Installation
+**Note:**  
+A `venv/` folder is not included and should be created locally when setting up the environment.
 
-1. Clone the repository:
+---
 
+## ⚙️ Installation
+
+### 1. Clone the repository
 git clone https://github.com/your-username/visual_product_matcher.git
 cd visual_product_matcher
 
-2. Create and activate a virtual environment:
+text
 
+### 2. Create and activate a virtual environment
 python -m venv venv
 
-# Windows
+text
+
+**On Windows:**
 venv\Scripts\activate
-# macOS/Linux
+
+text
+
+**On macOS/Linux:**
 source venv/bin/activate
 
-3. Install dependencies:
+text
 
+### 3. Install dependencies
 pip install -r requirements.txt
 
-4. Run the Streamlit app locally:
+text
 
+### 4. Preprocess the dataset and extract embeddings
+bash run_preprocess.sh
+
+text
+
+### 5. Run the Streamlit app
 streamlit run app.py
-🔹 Usage
 
-Upload a product image or enter an image URL.
+text
 
-Click Query to find visually similar products.
+---
 
-View the results below the input section.
+## 🧠 Usage
 
-🔹 Deployment
+1. Upload a product image or paste a valid image URL.  
+2. Click **"Query"** to find visually similar products.  
+3. View the top matching results below the input area, complete with thumbnail previews and metadata.
 
-The app can be deployed directly to Streamlit Cloud
+---
 
-Make sure the data/123/ folder is included in the repo when deploying.
+## ☁️ Deployment on Streamlit Cloud
 
-The app handles missing files gracefully, but all dataset images should ideally be present for full functionality.
+You can deploy this app directly on **Streamlit Cloud**:
 
-🔹 Requirements
+- Include the `data/123/` folder, `embeddings.npy`, and `metadata.json` files in your repository.
+- Missing images or embeddings will not crash the app, but may lead to incomplete results.
+- Customize the `requirements.txt` file to ensure all dependencies are installed in the deployment environment.
 
-Python 3.10+
+---
 
-Streamlit
+## 🧩 Project Components
 
-PIL (Pillow)
+### `app.py`
+The main Streamlit interface responsible for image uploads, URL input, similarity queries, and result visualization.
 
-Other packages as listed in requirements.txt
+### `extract_embeddings.py`
+Script to compute embeddings for all dataset images. This creates the `embeddings.npy` file used for real-time similarity matching.
+
+### `model.py`
+Defines the image feature extraction model (e.g., ResNet, ViT, or custom CNN) used to convert images into vector embeddings.
+
+### `metadata.json`
+Stores product-related metadata — such as product names, categories, prices, or descriptions — displayed alongside query results.
+
+### `embeddings.npy`
+Binary NumPy array containing precomputed embeddings for fast similarity search (avoids recomputation during runtime).
+
+### `run_preprocess.sh`
+Shell script automating the preprocessing pipeline, including image validation, embedding extraction, and dataset setup.
+
+---
+
+## 🧰 Requirements
+
+- Python **3.10+**
+- **Streamlit** for the web interface
+- **Pillow (PIL)** for image processing
+- **NumPy** for numerical computations
+- **scikit-learn** for nearest neighbors similarity search
+- Additional dependencies listed in `requirements.txt`
+
+Install all via:
+pip install -r requirements.txt
+
+text
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+Follow these steps to get started:
+
+1. Fork the repository
+2. Create a new branch
+git checkout -b feature/my-feature
+
+3. Make your changes and commit
+git commit -m "Add new feature"
+
+4. Push to your branch
+git push origin feature/my-feature
+
+5. Open a Pull Request on GitHub
+text
+
+---
+
+## 🪪 License
+
+This project is released under the **MIT License**.  
+You’re free to use, modify, and distribute it for personal or commercial purposes.
+
+---
+
+## 📬 Contact
+
+If you have questions, feedback, or feature requests, feel free to open an issue or reach out via GitHub.
