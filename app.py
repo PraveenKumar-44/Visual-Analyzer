@@ -127,7 +127,7 @@ hr {
 # --- Header ---
 st.markdown("""
 <div class="header">
-  <h1>🧠 Visual Product Matcher</h1>
+  <h1> Visual Product Matcher</h1>
   <p>Find visually similar products instantly using AI-powered image matching.</p>
 </div>
 """, unsafe_allow_html=True)
