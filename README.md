@@ -157,15 +157,3 @@ git push origin feature/my-feature
 5. Open a Pull Request on GitHub
 text
 
----
-
-## 🪪 License
-
-This project is released under the **MIT License**.  
-You’re free to use, modify, and distribute it for personal or commercial purposes.
-
----
-
-## 📬 Contact
-
-If you have questions, feedback, or feature requests, feel free to open an issue or reach out via GitHub.
